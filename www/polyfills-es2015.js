@@ -6513,8 +6513,8 @@ window.__Zone_disable_customElements = true;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/datalogy/pajportalv2/src/polyfills.ts */"./src/polyfills.ts");
-module.exports = __webpack_require__(/*! /var/www/html/datalogy/pajportalv2/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
+__webpack_require__(/*! /Users/apple/Desktop/apps/test-paj/src/polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! /Users/apple/Desktop/apps/test-paj/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
 
 
 /***/ })
