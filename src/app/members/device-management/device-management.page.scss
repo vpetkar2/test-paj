@@ -1,0 +1,154 @@
+
+
+ion-content{
+    --background: var(--contentbg);
+    .device-list{
+        //padding:3px 10px 10px;
+        .flaticon-move{
+            color: #adadad;
+            font-size:20px;
+        }
+        ion-list{
+            ion-item{
+                --background: var(--lightgrey);
+                border-radius: 5px;
+                margin-bottom: 10px;
+                ion-avatar{
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 10px;
+                    img{
+                        border-radius: 5px;
+                    }   
+                }
+                ion-toggle{
+                    margin: 0;
+                    padding:5px 8px;
+                }
+                .item-inner{
+                    border: 0 !important;
+                } 
+            }
+            
+        }
+    }
+
+    ion-card{
+       border-bottom: solid 1px var(--bordercolor);
+       border-radius: 0;
+       margin: 0 0 10px;
+        box-shadow: none;
+        .white {
+            background: var(--ion-item-background,var(--ion-background-color,#fff));
+        }
+        &:last-child{
+            margin-bottom: 0;
+        }
+        ion-card-header{
+            text-align: left;
+            background: var(--lightgrey);
+            //padding: 15px;
+            ion-card-title{
+                font-size: 14px;
+                color: var(--black);
+                margin: 0;
+                img{
+                    display: inline;
+                    width: 25px;
+                    vertical-align: middle;
+                    margin: -3px 5px 0 0;
+                }
+            }
+            ion-icon{
+                position: absolute;
+                top: 14px;
+                right: 20px;
+                font-size: 20px;
+                height: 25px;
+                color: var(--primary);
+            }
+            i{
+                position: absolute;
+                color: var(--primary);
+                right: 15px;
+                bottom: 15px;
+                font-size: 16px;
+            }
+        }
+       
+        ion-card-content{
+            &.device-detail{
+                padding: 0;
+            }
+            padding: 10px;
+            ion-list{
+                padding: 0;
+                ion-item{
+                    --min-height: 40px;
+                    &:last-child{
+                        border:0;
+                    }
+                    .item-native{
+                        padding: 0;
+                    }
+                    ion-avatar{
+                        width: 20px;
+                        height: 20px;
+                        img{
+                            border-radius: 0; 
+                        }
+                    }
+                    ion-icon{
+                        font-size: 17px;
+                        color: var(--primary);
+                        height: 27px;
+                        width: 26px;
+                        padding: 2px;
+                         
+                    }
+                    ion-label{
+                        font-size: 14px;
+                        &.detail-item{
+                            color: #949494;
+                        }
+                    }
+                    ion-select{
+                        width: 100%;
+                        display: contents;   
+                        .select-icon {
+                            .select-icon-inner {
+                               color : var(--primary) !important;
+                            }
+                          }
+                    }
+                    .color-box{
+                        border-radius: 5px;
+                        height: 35px;
+                        width: 90px;
+                        float: right;
+                    }
+                }
+            }
+            .label-fileds{
+                padding:0;
+                border-bottom: solid 1px var(--bordercolor);
+                .field-info{
+                    padding: 5px 0 10px;
+                    font-size: 12px;
+                    line-height: 17px;
+                    i{
+                        margin-right: 3px;
+                        font-size: 14px;
+                    }
+                }
+            }
+            .options-select{
+                --padding-start: 0;
+                --padding-end: 0;
+                    ion-icon{
+                        margin:0 0px 0 0;
+                    }
+            }
+        }
+    }
+}

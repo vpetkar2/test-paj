@@ -1,0 +1,85 @@
+<ion-bottom-drawer [(state)]="drawerState" [minimumHeight]="minimumHeight" [dockedHeight]="dockedHeight" [shouldBounce]="shouldBounce"
+ [distanceTop]="distanceTop" color="primary">
+
+    <ion-toolbar mode="ios" color="dark">
+        <ion-title class="title-height"><ion-icon name="arrow-dropup" class="icon-specs"></ion-icon></ion-title>
+    </ion-toolbar>
+
+    <ion-content color="dark">
+        <ion-label>Device: {{deviceName}}</ion-label>
+            <mat-accordion>
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header [class.slides-color]="colorClassActive[0]" (click)="toggleColor(0)">
+                        Info's
+                      </mat-expansion-panel-header>
+                  
+                      This the expansion 1 content
+                  
+                    </mat-expansion-panel>
+                  
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header [class.slides-color]="colorClassActive[1]" (click)="toggleColor(1)">
+                        Route
+                      </mat-expansion-panel-header>
+                  
+                      <ion-grid > 
+                            <ion-row >
+                                <ion-col size-md="6" offset-md="3"> 
+                                  <ion-list  no-padding>
+                                        <form #f="ngForm" (ngSubmit)="getPoints(f)">
+                                      <ion-item no-padding color="dark">
+                                            <ion-icon name="calendar"></ion-icon>
+                                            <ion-datetime displayFormat="MMM DD, YYYY HH:mm" ngModel pickerFormat="MMM DD, YYYY HH:mm"  name="startDate" placeholder="Start Date">
+                                            </ion-datetime>
+                                            <!-- <ion-input type="text"  placeholder="Email" ngModel name="email" [(ngModel)]="email"></ion-input> -->
+                                      </ion-item>
+                                      <ion-item no-padding color="dark">
+                                            <ion-icon name="calendar"></ion-icon>
+                                            <ion-datetime displayFormat="MMM DD, YYYY HH:mm" ngModel pickerFormat="MMM DD, YYYY HH:mm" name="endDate" placeholder="End Date">
+                                            </ion-datetime>
+                                            <!-- <ion-input type="text"  placeholder="Email" ngModel name="email" [(ngModel)]="email"></ion-input> -->
+                                      </ion-item>
+                                      <ion-item no-padding color="dark">
+                                            <ion-icon name="time"></ion-icon>
+                                            <ion-input placeholder="Last Minutes" ngModel name="lastMinutes" class="text-alignment">
+                                            </ion-input>
+                                            <!-- <ion-input type="text"  placeholder="Email" ngModel name="email" [(ngModel)]="email"></ion-input> -->
+                                      </ion-item>
+                                      <ion-item no-padding color="dark">
+                                            <ion-icon name="analytics"></ion-icon>
+                                            <ion-input placeholder="Last WayPoints" ngModel name="lastPoints" class="text-alignment">
+                                            </ion-input>
+                                            <!-- <ion-input type="text"  placeholder="Email" ngModel name="email" [(ngModel)]="email"></ion-input> -->
+                                      </ion-item>
+                                      <ion-item no-padding color="dark">
+                                            <ion-button type="submit" slot="end">
+                                              <ion-label>Save</ion-label>
+                                            </ion-button>
+                                        </ion-item>
+                                      
+                              </form>
+                                  </ion-list>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                  
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel>
+                            <mat-expansion-panel-header [class.slides-color]="colorClassActive[2]" (click)="toggleColor(2)">
+                              Alert
+                            </mat-expansion-panel-header>
+                        
+                            This the expansion 2 content
+                        
+                          </mat-expansion-panel>
+                  
+                  </mat-accordion>
+
+
+        
+
+
+
+    </ion-content>
+</ion-bottom-drawer>

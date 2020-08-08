@@ -1,0 +1,164 @@
+<ion-header>
+  <ion-toolbar>
+    
+    <ion-avatar slot="start">
+      <img alt="Image not Found" *ngIf="!deviceAllData.iconusecustom" src="./../../../../assets/icons/map/devices/device_markers/{{deviceAllData.iconname}}.png">
+      <img alt="Image not Found" *ngIf="deviceAllData.iconusecustom" [src]="(this.url+'/upload/images/users/'+this.userId+'/devices/'+deviceAllData.id+'/customImg/'+deviceAllData.iconcustomimage)">
+    </ion-avatar>
+    <ion-title>{{ deviceData.deviceName }}</ion-title>
+    <ion-button slot="end" color="primary" (click)="dismiss('loadDevices')">Change Device</ion-button>
+    <ion-buttons slot="end" (click)="dismiss()">
+      <ion-icon class="flaticon-close-button"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="deviceModel; else NoDeviceModel">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Alerts</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="none">
+
+        <!-- SOS Start -->
+        <ion-item *ngIf="deviceModel.alarm_sos===1 || deviceModel.alarm_drop==1">
+          <div *ngIf="deviceModel.alarm_sos===1; else drop">
+            <ion-avatar slot="start">
+              <img src="../../../assets/icons/map/alarms/paj-icon-alarm-sos.png">
+            </ion-avatar>
+            <ion-icon slot="start" class="flaticon-information-2" (click)="showAlarmInfo(0)"></ion-icon>
+            <ion-label class="item-paddings">SOS</ion-label>
+          </div>
+          <ng-template #drop>
+            <div>
+              <ion-label class="item-paddings">Remove the FINDER</ion-label>
+              <ion-img src="../../../assets/icons/map/alarms/paj-icon-alarm-drop.png" class="icon-dimensions item-bottom-padding">
+              </ion-img>
+            </div>
+          </ng-template>
+          <ion-toggle slot="end" color="primary" (ionChange)="enableAlarmData($event)" [checked]="deviceAlarmsValues.alarmsos" id="alarmsos">
+          </ion-toggle>
+        </ion-item>
+        <!-- SOS End -->
+
+        <!-- Low Battery Start -->
+        <ion-item *ngIf="deviceModel.alarm_batteriestand===1">
+          <div>
+            <ion-avatar slot="start">
+              <img src="../../assets/images/power-cut-off.png">
+            </ion-avatar>
+            <ion-icon slot="start" class="flaticon-information-2" (click)="showAlarmInfo(1)"></ion-icon>
+            <ion-label>Low Battery</ion-label>
+          </div>  
+          <ion-toggle slot="end" color="primary" (ionChange)="enableAlarmData($event)" [checked]="deviceAlarmsValues.alarmakkuwarnung" id="alarmakkuwarnung">
+          </ion-toggle>                               
+        </ion-item>
+        <!-- Low Battery End -->
+
+        <!-- Shock Start -->
+        <ion-item *ngIf="deviceModel.alarm_erschuetterung===1">
+          <div>
+            <ion-avatar slot="start">
+              <img src="../../assets/images/shock.png">
+            </ion-avatar>
+            <ion-icon slot="start" class="flaticon-information-2" (click)="showAlarmInfo(2)"></ion-icon>
+            <ion-label>Shock</ion-label>            
+          </div>
+          <ion-toggle slot="end" color="primary" (ionChange)="enableAlarmData($event)" [checked]="deviceAlarmsValues.alarmbewegung" id="alarmbewegung">
+          </ion-toggle>
+        </ion-item>
+        <!-- Shock End -->
+
+        <!-- Power Cut Off Start -->
+        <ion-item *ngIf="deviceModel.alarm_stromunterbrechung===1">
+          <div>
+            <ion-avatar slot="start">
+              <img src="../../assets/images/power-cut-off.png">
+            </ion-avatar>
+            <ion-icon slot="start" class="flaticon-information-2" (click)="showAlarmInfo(3)"></ion-icon>
+            <ion-label>Power cut-off</ion-label>
+          </div>
+          <ion-toggle slot="end" color="primary" (ionChange)="enableAlarmData($event)" [checked]="deviceAlarmsValues.alarmstromunterbrechung" id="alarmstromunterbrechung"></ion-toggle>
+        </ion-item>
+        <!-- Power Cut Off End -->
+        
+        <!-- Ignition Alert Start -->
+        <ion-item *ngIf="deviceModel.alarm_zuendalarm===1">
+          <div>
+            <ion-avatar slot="start">
+              <img src="../../assets/images/ignition-alert.png">
+            </ion-avatar>
+            <ion-icon slot="start" class="flaticon-information-2" (click)="showAlarmInfo(4)"></ion-icon>
+            <ion-label>Ignition alert</ion-label>
+          </div>
+          <ion-toggle slot="end" color="primary" (ionChange)="enableAlarmData($event)" [checked]="deviceAlarmsValues.alarmzuendalarm" id="alarmzuendalarm"></ion-toggle>
+        </ion-item>
+        <!-- Ignition Alert End -->
+
+        <!-- Speeding Alert Start -->
+        <ion-item *ngIf="deviceModel.alarm_geschwindigkeit===1">
+          <div>
+            <ion-avatar slot="start">
+              <img src="../../assets/images/speed.png">
+            </ion-avatar>
+            <ion-icon slot="start" class="flaticon-information-2" (click)="showAlarmInfo(5)"></ion-icon>
+            <ion-label>Speeding alert</ion-label>
+          </div>
+          <div slot="end" class="right-side">
+            <ion-toggle slot="end" color="primary" (ionChange)="enableAlarmData($event)" [checked]="deviceAlarmsValues.alarmgeschwindigkeit" id="alarmgeschwindigkeit"></ion-toggle>
+            <div *ngIf="deviceAlarmsValues.alarmgeschwindigkeit===1" slot="end">
+              <ion-item class="ion-no-padding">
+              <ion-label>km/h</ion-label></ion-item>
+              <ion-item class="ion-no-padding">
+              <ion-input type="number" [(ngModel)]="alarmgeschwindigkeitab" (ionBlur)="updateSpeed(alarmgeschwindigkeitab)" placeholder="Value" class="speed-input-width"></ion-input>
+            </ion-item></div>
+          </div>
+        </ion-item>
+        <!-- Speeding Alert End -->
+
+        <!-- Leave / Enter Area Start -->
+        <ion-item *ngIf="deviceModel.alarm_radius===1">
+          <div>
+            <ion-avatar slot="start">
+              <img src="../../assets/images/area.png">
+            </ion-avatar>
+            <ion-icon slot="start" class="flaticon-information-2" (click)="showAlarmInfo(6)"></ion-icon>
+            <ion-label>Leave / Enter Area</ion-label>
+          </div>
+          <ion-toggle slot="end" color="primary" (ionChange)="enableAlarmData($event)" [checked]="deviceAlarmsValues.alarmgeozaunbefahren" id="alarmgeozaunbefahren"></ion-toggle>
+        </ion-item>
+        <!-- Leave / Enter Area End -->
+
+        <!-- <ion-item class="item-field">
+          <ion-select placeholder="Select shape">
+            <ion-select-option value="f">Circle</ion-select-option>
+            <ion-select-option value="m">Square</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Color</ion-label>
+          <div class="color-box" style="background: #5e68e3;"></div>
+        </ion-item> -->
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  </div>
+  <ng-template #NoDeviceModel>
+    <div class="label-center">
+      <ion-label class="item-paddings">No data for Alerts</ion-label>
+    </div>
+  </ng-template>
+
+</ion-content>
+
+<!-- <ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" size="large">
+      Save <ion-icon class="flaticon-arrow-pointing-to-right"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer> -->

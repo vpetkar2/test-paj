@@ -1,0 +1,181 @@
+<app-side-bar slot="end"></app-side-bar>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/map"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Device Management</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> <img src="../../assets/images/location-3.png"> Map Display Settings </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="white" *ngIf="userInfo">
+
+      <div class="label-fileds">
+        <ion-list lines="none">
+          <ion-item class="options-select">
+            <ion-icon class="flaticon-pin"></ion-icon>
+            <ion-label>Rout Markers</ion-label>
+            <ion-select (ionChange)="updateSettings()" [(ngModel)]="userInfo.route_icons" placeholder="Select One" class="ion-text-end">
+              <ion-select-option value="arrow">Arrow</ion-select-option>
+              <ion-select-option value="circle">Circle</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div class="field-info"> <i class="flaticon-information"></i> Change the icon of route markers on the map. </div>
+        </ion-list>
+      </div>
+
+      <div class="label-fileds">
+        <ion-list lines="none">
+          <ion-item class="options-select">
+            <ion-icon class="flaticon-speedometer"></ion-icon>
+            <ion-label>Distance Unit</ion-label>
+            <ion-select (ionChange)="updateSettings()" [(ngModel)]="userInfo.distance_unit" placeholder="Select One" class="ion-text-end">
+              <ion-select-option value="km">Kilometer</ion-select-option>
+              <ion-select-option value="mi">Mile</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div class="field-info"> <i class="flaticon-information"></i> Distance Unit Type</div>
+        </ion-list>
+      </div>
+
+      <div class="label-fileds">
+        <ion-list lines="none">
+          <ion-item class="options-select">
+            <ion-icon class="flaticon-map-1"></ion-icon>
+            <ion-label>Map Style</ion-label>
+            <ion-select (ionChange)="updateSettings()" [(ngModel)]="userInfo.map" placeholder="Select One" class="ion-text-end">
+              <ion-select-option value="osm">Open Street Maps</ion-select-option>
+              <ion-select-option value="paj">PAJ Maps</ion-select-option>
+              <ion-select-option value="pajHills">PAJ Hill Maps</ion-select-option>
+              <ion-select-option value="3D">PAJ 3D Map</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div class="field-info"> <i class="flaticon-information"></i> Switch the map style</div>
+        </ion-list>
+      </div>
+
+      <div class="label-fileds">
+        <ion-list lines="none">
+          <ion-item class="options-select">
+            <ion-icon class="flaticon-delivery-1"></ion-icon>
+            <ion-label>Distances</ion-label>
+            <ion-select (ionChange)="updateSettings()" [(ngModel)]="userInfo.show_kmanzeige" placeholder="Select One" class="ion-text-end">
+              <ion-select-option [value]="1" >Yes</ion-select-option>
+              <ion-select-option [value]="0" >No</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div class="field-info"> <i class="flaticon-information"></i> Display the distances of transferred routes. Please note that this is
+            not the exact distance covered. Due to signal deviations, there may
+            be differences between the actual route and the FINDER portal. </div>
+        </ion-list>
+      </div>
+
+      <div class="label-fileds">
+        <ion-list lines="none">
+          <ion-item class="options-select">
+            <ion-icon class="flaticon-graph"></ion-icon>
+            <ion-label>Snap</ion-label>
+            <ion-select (ionChange)="updateSettings()" [(ngModel)]="userInfo.snap_to_road" placeholder="Select One" class="ion-text-end">
+              <ion-select-option [value]="1">Yes</ion-select-option>
+              <ion-select-option [value]="0">No</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div class="field-info"> <i class="flaticon-information"></i> Snap the displayed route by default to the road. Please note, that it is not always possible to generate that optimized route. Depending on the lenght and complexity of the route it might fall back to straight lines. </div>
+        </ion-list>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> <img src="../../assets/images/gps.png"> Device settings </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="white">
+      <ion-searchbar type="text" autocorrect="on" autocomplete="on" debounce="700"  [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()"></ion-searchbar>
+    </ion-card-content>
+    <div *ngIf="searching" class="spinner-container">
+      <ion-spinner></ion-spinner>
+    </div>
+  </ion-card>
+
+  <div *ngIf="devices">
+    <ion-card *ngFor="let device of searchItem">
+      <ion-card-header>
+        <ion-card-title> 
+          <img alt="Image not Found" *ngIf="!device.iconusecustom" src="../../../assets/icons/map/devices/device_markers/{{device.iconname}}.png">
+          <img alt="Image not Found" *ngIf="device.iconusecustom" [src]="(this.url+'/upload/images/users/'+this.userId+'/devices/'+device.id+'/customImg/'+device.iconcustomimage)">
+          <ion-label>{{device.name}}</ion-label>
+        </ion-card-title>
+
+        <ion-icon class="flaticon-settings" (click)="deviceSetting(device)"></ion-icon>
+
+      </ion-card-header>
+      <ion-card-content class="device-detail">
+        <ion-list lines="none">
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="../../assets/images/userid.png">
+            </ion-avatar>
+            <ion-label>ID:</ion-label>
+            <ion-label slot="end" class="ion-text-end detail-item">{{device.id}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="../../assets/images/username.png">
+            </ion-avatar>
+            <ion-label>Name:</ion-label>
+            <ion-label slot="end" class="ion-text-end detail-item">{{device.name}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="../../assets/images/finder.png">
+            </ion-avatar>
+            <ion-label>Finder Identifier:</ion-label>
+            <ion-label slot="end" class="ion-text-end detail-item">{{device.imei}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="../../assets/images/calendar.png">
+            </ion-avatar>
+            <ion-label>Storage Time:</ion-label>
+            <ion-label slot="end" class="ion-text-end detail-item">{{device.speicherdauer}} Days</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="../../assets/images/coffee-breaks.png">
+            </ion-avatar>
+            <ion-label>Interval:</ion-label>
+            <ion-label slot="end" class="ion-text-end detail-item">{{device.intervalllaenge}}s</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="../../assets/images/google-maps.png">
+            </ion-avatar>
+            <ion-label>Last Position: </ion-label>
+            <ion-label slot="end" class="ion-text-end detail-item">
+              <a href="https://maps.google.com/maps?f=q&hl=de&q={{device.last_lat}},{{device.last_lng}}(Location)&ie=UTF8&z=16&iwloc=addr&om=1" target="_blank">
+                <ion-icon class="flaticon-pin"></ion-icon>
+              </a>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="../../assets/images/google-maps.png">
+            </ion-avatar>
+            <ion-label>Last Record:</ion-label>
+            <ion-label slot="end" class="ion-text-end detail-item">{{device.last_dateunix * 1000 | date:'dd.MM.yyyy HH:mm:ss'}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+

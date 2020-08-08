@@ -1,0 +1,18 @@
+
+<ion-header>
+  <ion-toolbar>
+  <ion-title>Select Deafult Icon</ion-title>
+   <ion-buttons slot="start">
+    <ion-button (click)="dismiss()">
+      <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="center-align">
+  <ion-list>
+    <button style="height: 80px;width: 80px;border-radius: 50%;" *ngFor="let icon of deafult_icon" (click)="dismiss(icon)"><img src="../../../../../assets/device_markers/{{icon}}.png" ></button>
+    <!-- </ion-item> -->
+</ion-list>
+</ion-content>

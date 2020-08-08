@@ -1,0 +1,56 @@
+<app-side-bar slot="end"></app-side-bar>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end" (click)="dismissAllModules();">
+      <ion-icon class="flaticon-notification-bell"></ion-icon>
+      <span>10</span>
+    </ion-buttons>
+    <ion-buttons slot="end" (click)="dismissAllModules();">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title><img class="header-logo" src="./../../../assets/images/paj-logo.png"></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="map" class="noScroll full-map">  
+      <!-- <ion-button (click)="loadAllPoints()">Test</ion-button> -->
+      <nav id="listing-group" class="listing-group">
+        <ion-icon name="add-circle-outline" class="icon-style"  (click)="drawCircle()">   
+        </ion-icon>
+        </nav>
+  </div>
+  <!-- <app-bottom-fab [isAdmin]= "isAdmin"></app-bottom-fab> -->
+</ion-content>
+
+<!-- Tabs -->
+<ion-footer class="menu-footer">
+  <ion-toolbar>
+    <ion-row>
+      <ion-col>
+        <a (click)="loadDeviceListModal();activateTab(1);" [ngClass]="tabIndex == 1 ? 'tab-active' : 'tab-inactive'">
+          <ion-icon class="flaticon-gps-navigator"></ion-icon>
+          <span>Device List</span>
+        </a>
+      </ion-col>
+      <ion-col>
+        <a (click)="loadInfoModal();activateTab(2);" [ngClass]="tabIndex == 2 ? 'tab-active' : 'tab-inactive'">
+          <ion-icon class="flaticon-information-1"></ion-icon>
+          <span>Infos</span>
+        </a>
+      </ion-col>
+      <ion-col>
+        <a (click)="loadRouteModal();activateTab(3);" [ngClass]="tabIndex == 3 ? 'tab-active' : 'tab-inactive'">
+          <ion-icon class="flaticon-delivery-1"></ion-icon>
+          <span>Route</span>
+        </a>
+      </ion-col>
+      <ion-col>
+        <a (click)="loadAlertModal();activateTab(4);" [ngClass]="tabIndex == 4 ? 'tab-active' : 'tab-inactive'">
+          <ion-icon class="flaticon-emergency"></ion-icon>
+          <span>Alert</span>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

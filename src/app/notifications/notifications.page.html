@@ -1,0 +1,36 @@
+<app-side-bar slot="end"></app-side-bar>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="loadMap();">
+      <ion-back-button defaultHref="/map"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Alarms</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="content-padding">
+    <ion-list lines="none">
+      <ion-item *ngFor="let item of notifications; let i = index">
+        <ion-avatar slot="start">
+          <img src="./../../assets/images/alarm-thumb.jpg">
+        </ion-avatar>
+        <ion-label>
+          <h3>{{item.bezeichnung}}</h3>
+          <p>{{item.meldung}}</p>
+          <!-- <ion-row>
+            <ion-col>
+              <div class="alarm-details"> <i class="flaticon-calendar-1"></i> 02 July 2020, 11:17 min </div>
+            </ion-col>
+            <ion-col class="ion-text-end">
+              <div class="alarm-details"> <a href="">View details <i class="flaticon-arrow-pointing-to-right"></i> </a>
+              </div>
+            </ion-col>
+          </ion-row> -->
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

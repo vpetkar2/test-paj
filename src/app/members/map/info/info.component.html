@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-avatar slot="start">
+      <img alt="Image not Found" *ngIf="!deviceAllData.iconusecustom" src="./../../../../assets/icons/map/devices/device_markers/{{deviceAllData.iconname}}.png">
+      <img alt="Image not Found" *ngIf="deviceAllData.iconusecustom" [src]="(this.url+'/upload/images/users/'+this.userId+'/devices/'+deviceAllData.id+'/customImg/'+deviceAllData.iconcustomimage)">
+    </ion-avatar>
+    <ion-title>{{ deviceData.deviceName }}</ion-title>
+    <ion-button slot="end" color="primary" (click)="dismiss('loadDevices')">Change Device</ion-button>
+    <ion-buttons slot="end" (click)="dismiss()">
+      <ion-icon class="flaticon-close-button"></ion-icon>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <!-- <i class="flaticon-information-2"></i> -->
+      <ion-card-title>Latest Data</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/images/batery.png">
+          </ion-avatar>
+          <ion-label>{{ deviceInfo.battery }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/images/kilo-meter.png">
+          </ion-avatar>
+          <ion-label>{{ deviceInfo.speed }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/images/google-maps.png">
+          </ion-avatar>
+          <a id="googleMapsLink" target="_blank">Google Maps</a>
+          <ion-label color="primary">{{ deviceInfo.maps }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/images/calendar.png">
+          </ion-avatar>
+          <ion-label>{{ deviceInfo.lastLogin }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <!-- <i class="flaticon-information-2"></i> -->
+      <ion-card-title>Nearest Location</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/images/location-3.png">
+          </ion-avatar>
+          <ion-label>{{ deviceInfo.building }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/images/location-home.png">
+          </ion-avatar>
+          <ion-label>{{ deviceInfo.street }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/images/globe.png">
+          </ion-avatar>
+          <ion-label color="primary">{{ deviceInfo.city }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <!-- <i class="flaticon-information-2"></i> -->
+      <ion-card-title>Stopped since</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/images/calendar-2.png">
+          </ion-avatar>
+          <ion-label>{{ deviceInfo.lastLogin }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../assets/images/clock.png">
+          </ion-avatar>
+          <ion-label>{{ deviceInfo.time }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,22 @@
+.center-align {
+    text-align: center;
+    font-size: 12px;
+}
+.bottom-icon {
+    display: block;
+    font-size: 22px;
+    margin: 5px auto;
+}
+.profile {
+    width: 200px;
+    height: 200px;
+    margin: 50px auto;
+    display: block;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+ion-button {
+    --color: var(--white) !important;
+}

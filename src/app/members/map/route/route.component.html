@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    
+    <ion-avatar slot="start">
+      <img alt="Image not Found" *ngIf="!deviceAllData.iconusecustom" src="./../../../../assets/icons/map/devices/device_markers/{{deviceAllData.iconname}}.png">
+      <img alt="Image not Found" *ngIf="deviceAllData.iconusecustom" [src]="(this.url+'/upload/images/users/'+this.userId+'/devices/'+deviceAllData.id+'/customImg/'+deviceAllData.iconcustomimage)">
+    </ion-avatar>
+    <ion-title>{{ deviceData.deviceName }}</ion-title>
+    <ion-button slot="end" color="primary" (click)="dismiss('loadDevices')">Change Device</ion-button>
+    <ion-buttons slot="end" (click)="dismiss()">
+      <ion-icon class="flaticon-close-button"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="getPoints(f)">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Date range</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="none">
+        <!-- <ion-item class="item-field">
+          <ion-icon class="flaticon-calendar-1" slot="start"></ion-icon>
+          <ion-select placeholder="Select Day">
+            <ion-select-option value="f">Yesterday</ion-select-option>
+            <ion-select-option value="m">Tomorrow</ion-select-option>
+          </ion-select>
+        </ion-item> -->
+        <ion-item>
+          <ion-row class="two-column">
+            <ion-col size="6">
+              <ion-label class="top10">From</ion-label>
+              <ion-item class="item-field">
+                <ion-icon class="flaticon-calendar-1" slot="start"></ion-icon>
+                <ion-datetime class="datetime" displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="startDate" ngModel pickerFormat="MMM DD, YYYY HH:mm" name="startDate" placeholder="Start Date">
+                </ion-datetime>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-label class="top10">To</ion-label>
+              <ion-item class="item-field mr-0">
+                <ion-icon class="flaticon-calendar-1" slot="start"></ion-icon>
+                <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="endDate" ngModel pickerFormat="MMM DD, YYYY HH:mm" name="endDate" placeholder="End Date">
+                </ion-datetime>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Last minutes</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="none">
+        <ion-item class="item-field">
+          <ion-icon class="flaticon-clock" slot="start"></ion-icon>
+          <ion-input placeholder="00:00" name="lastMinutes" [(ngModel)]="lastMinutes"></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Last points</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="none">
+        <ion-item class="item-field">
+          <ion-icon class="flaticon-placeholder" slot="start"></ion-icon>
+          <ion-input placeholder="100" name="lastPoints" [(ngModel)]="lastPoints"></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</form>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" size="large" (click)="getPoints(f)">
+      Save <ion-icon class="flaticon-arrow-pointing-to-right"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

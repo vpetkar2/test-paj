@@ -1,0 +1,7 @@
+{
+  "name": "PAJ",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+     <ion-button (click)="dismiss()">
+      <ion-icon class="flaticon-arrow-pointing-to-left" slot="icon-only" name="arrow-back"></ion-icon >
+     </ion-button>
+    </ion-buttons>
+    <ion-title>Device Settings
+      <!-- <br><small>{{name}}</small> -->
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-list lines="none">
+        <div class="custom-field">
+          <ion-label>Device Name<ion-text color="danger">*</ion-text></ion-label>
+          <ion-item class="item-field">
+            <ion-input required placeholder="Benz car tracker 1" [(ngModel)]="name"></ion-input>
+          </ion-item>
+        </div>
+        <ion-item>
+          <ion-label>Color</ion-label>
+          <!-- <div class="color-box" style="background: #5e68e3;"></div> -->
+          <input type="color" [(ngModel)]="color" class="color-box">
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Device Image
+            <ion-avatar>
+              <img alt="Image not Found" *ngIf="!this.iconusecustom" class="deafultIcon" src="../../../../../assets/device_markers/{{this.iconname}}.png">
+      
+              <img alt="Image not Found" class="deafultIcon" *ngIf="this.iconusecustom" [src]="(this.url+'/upload/images/users/'+this.user_id+'/devices/'+this.id+'/customImg/'+this.iconcustomimage)">
+            </ion-avatar>
+          </ion-label>
+          <ion-button expand="block" size="large" (click)="DeviceImg()">
+            <ion-icon class="flaticon-photo-camera"></ion-icon> Change photo
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label>Sharing</ion-label>
+          <ion-toggle slot="end" color="primary" [(ngModel)]="device_viewlink" (ionChange)="!device_viewlink"></ion-toggle>
+        </ion-item>
+        <div class="custom-field" *ngIf="device_viewlink">
+          <ion-label>Sharing link</ion-label>
+          <ion-item class="item-field">
+            <ion-input required type="text" [(ngModel)]="shaireLink" placeholder="Lorem ipsum doler site amet"></ion-input>
+          </ion-item>
+        </div>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+     <ion-button (click)="dismiss()">
+      <ion-icon class="flaticon-arrow-pointing-to-left" slot="icon-only" name="arrow-back"></ion-icon >
+     </ion-button>
+    </ion-buttons>
+    <ion-title>Device Settings <br><small>{{name}}</small></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Device Name <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required type="text" [(ngModel)]="name" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label >Color</ion-label>
+    <input type="color" [(ngModel)]="color" >
+    </ion-item>
+    <ion-item>
+      <ion-label >Device image:</ion-label>
+
+      <img alt="Image not Found" *ngIf="!this.iconusecustom" class="deafultIcon" src="../../../../../assets/device_markers/{{this.iconname}}.png">
+      
+      <img alt="Image not Found" class="deafultIcon" *ngIf="this.iconusecustom" [src]="(this.url+'/upload/images/users/'+this.user_id+'/devices/'+this.id+'/customImg/'+this.iconcustomimage)">
+      <ion-button (click)="DeviceImg()" >Change</ion-button>
+
+    </ion-item>
+    <ion-item>
+      <ion-label >Sharing:</ion-label>
+
+      <ion-toggle [(ngModel)]="device_viewlink" (ionChange)="!device_viewlink"></ion-toggle>  
+    </ion-item>
+  <ion-item *ngIf="device_viewlink">
+    <ion-label>Sharing link:</ion-label>
+    <ion-input required type="text" [(ngModel)]="shaireLink"></ion-input>
+  </ion-item>
+</ion-list>
+</ion-content> -->

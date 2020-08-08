@@ -1,0 +1,162 @@
+<app-side-bar slot="end"></app-side-bar>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/map"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content direction="y">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title><img src="./../../../assets/images/meter.png"> Speed </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="white">
+      <div id="SpeedChart" style="height: 370px; width: 100%;"></div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>  <img src="./../../../assets/images/location-home.png"> Distance </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="white">
+      <ion-searchbar type="text" autocorrect="on" autocomplete="on" debounce="700"  [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()"></ion-searchbar>
+    </ion-card-content>
+  </ion-card>
+
+  <div id="body" *ngIf="searchItem">
+    <ion-card *ngFor="let device of searchItem" [ngStyle]="{'border-color': device.color}">
+      <ion-card-header>
+        <ion-card-title>  
+          <img alt="Image not Found" *ngIf="!device.iconusecustom" src="./../../../assets/icons/map/devices/device_markers/{{device.iconname}}.png">
+          <img alt="Image not Found" *ngIf="device.iconusecustom" [src]="(this.url+'/upload/images/users/'+this.userId+'/devices/'+device.id+'/customImg/'+device.iconcustomimage)">
+          <ion-label>{{device.name}}</ion-label>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="device-detail">
+
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>24 Hours</ion-label>
+            </ion-item>
+            <ion-item>
+              <p class="distance">
+                <span class="fontBig" style="color: brown;" *ngIf="device.device_distance.day1!='undefined'">
+                  {{((device.device_distance.day1).toFixed(2))}}
+                </span> km
+              </p>
+            </ion-item>
+            <ion-item>
+              <ion-label>7 Days</ion-label>
+            </ion-item>
+            <ion-item>
+              <p class="distance">
+                <span class="fontBig" style="color: chocolate;" *ngIf="device.device_distance.day1!='undefined'">
+                {{(device.device_distance.day7).toFixed(2)}}
+                </span> km
+              </p>
+            </ion-item>
+            <ion-item>
+              <ion-label>30 Days</ion-label>
+            </ion-item>
+            <ion-item>
+              <p>
+                <span class="fontBig" style="color: bisque;" *ngIf="device.device_distance.day1!='undefined'">
+                {{(device.device_distance.day30).toFixed(2)}}
+                </span> km
+              </p>
+            </ion-item>
+          </ion-list>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+<!-- <ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-button >
+          <ion-back-button defaultHref="/map"></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content direction="y">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Speed</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div id="SpeedChart" style="height: 370px; width: 100%;"></div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Distance</ion-card-title>
+    </ion-card-header>
+    <ion-searchbar type="text" autocorrect="on" autocomplete="on" debounce="700"  [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()"></ion-searchbar>
+    <ion-card-content id="body">
+      <div *ngIf="searchItem">
+        <ion-card class="devices-warper" *ngFor="let device of searchItem" [ngStyle]="{'border-color': device.color}">
+          <ion-card-header [ngStyle]="{'border-color': device.color}">
+            <ion-item lines="none">
+              <ion-avatar slot="start">
+                <img alt="Image not Found" *ngIf="!device.iconusecustom" src="../../../assets/icons/map/devices/device_markers/{{device.iconname}}.png">
+                <img alt="Image not Found" *ngIf="device.iconusecustom" [src]="(this.url+'/upload/images/users/'+this.userId+'/devices/'+device.id+'/customImg/'+device.iconcustomimage)">
+              </ion-avatar>
+              <ion-label>
+              <h2>{{device.name}}</h2>
+              </ion-label>
+            </ion-item>
+          </ion-card-header>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-12>
+                  <ion-list lines="none">
+                    <ion-item>
+                      <div style="width: 100%;">
+                        <ion-label>24 Hours</ion-label>
+                        <p class="distance">
+                          <span class="fontBig" style="color: brown;" >{{((device.device_distance.day1).toFixed(2))}}</span> km
+                        </p>
+                      </div>
+                    </ion-item>
+                    <ion-item>
+                    <div style="width: 100%;">
+                      <ion-label>7 Days</ion-label>
+                      <p class="distance">
+                        <span class="fontBig" style="color: chocolate;">{{(device.device_distance.day7).toFixed(2)}}</span> km
+                      </p>
+                    </div>
+                  </ion-item>
+                  <ion-item>
+                    <div style="width: 100%;">
+                      <ion-label>30 Days</ion-label>
+                      <p>
+                        <span class="fontBig" style="color: bisque;">{{(device.device_distance.day30).toFixed(2)}}</span> km
+                      </p>
+                    </div>
+                  </ion-item>
+                  </ion-list>
+                  <div class="buttonHolder">  
+                    <ion-buttons slot="end">
+                    </ion-buttons>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-card-content>
+            </ion-card-content>    
+          </ion-card>
+          </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content> -->

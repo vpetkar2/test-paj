@@ -1,0 +1,328 @@
+<ion-menu side="start" contentId="first" type="overlay" direction="y" auto-hide="true" menuClose="true">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <div class="panel-user-detail">
+      <ion-avatar slot="start">
+        <img src="./../../../assets/images/user-placeholder.jpg">
+      </ion-avatar>
+        <h3>{{fName+' '+lName}}</h3>
+        <p> <i class="flaticon-placeholder"></i> Your own location display here</p>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list id="inbox-list" lines="none">
+
+      <ion-item auto-hide="false" *ngFor="let p of appPages; let i = index" (click)="selectedIndex = i;" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="currenctUrl == p.url">
+        <ion-icon class="{{p.menuicon}}" slot="start"></ion-icon>
+        <ion-label>{{ p.title }} </ion-label>
+      </ion-item>
+
+      <ion-item lines="none" detail="false" (click)="logout()">
+        <ion-icon class="flaticon-alert" slot="start"></ion-icon>
+        <ion-label> Logout </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-footer>
+    <ion-toolbar>
+      <ion-row>
+        <ion-col>
+          <a (click)="openImprint()">
+            <span>Imprints</span>
+          </a>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <a style="color: #6e6e6e;">
+            <span>Version 1.00</span>
+          </a>
+        </ion-col>
+        <ion-col class="ion-text-end">
+          <a (click)="openPrivacyPolicy()">
+            <span>Policy</span>
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-footer>
+</ion-menu>
+
+<!-- <ion-menu side="end" contentId="first" type="overlay" (ionDidOpen)="loadConfigMenu()" direction="y">
+
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>Menu</ion-title>
+      <ion-buttons slot="primary">
+          <ion-button (click)="toggleReorderGroup()">Reorder</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content [scrollEvents]="true" scrollY="true">
+    <ion-radio-group [(ngModel)]="radioCheck" id="deviceRadio">
+      <ion-reorder-group id="reorder" (ionItemReorder)="doReorder($event)" disabled="true">
+        <ion-item *ngFor="let item of data; let i = index" >
+          <ion-reorder slot="start"></ion-reorder>
+          <ion-toggle color="primary" class="toggleButtons" (ionChange)="passToggleValue($event)" id={{item.id}} checked></ion-toggle>
+          <ion-label>{{item.name}}</ion-label>
+          <ion-radio slot="end" class="radioButtons" (click)="enableDeviceData(item.id, item.name, i)" id="r{{item.id}}"></ion-radio>
+        </ion-item>
+        </ion-reorder-group>
+    </ion-radio-group>
+
+    <br><br>
+    <ion-item class="device-heading">
+      <ion-label>Device: {{deviceName}}</ion-label>
+    </ion-item>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header [class.slides-color]="colorClassActive[0]" (click)="toggleColor(0)">
+          Info's
+        </mat-expansion-panel-header>
+    
+        <ion-list >
+          <ion-item-group>
+            <ion-item-divider class="ion-no-padding">
+              <ion-label>Latest Data:</ion-label>
+            </ion-item-divider>
+
+            <ion-item class="ion-no-padding">
+              <ion-icon name="battery-charging"></ion-icon>
+            <ion-label>{{deviceInfoValues.battery}}</ion-label>
+            </ion-item>
+            <ion-item class="ion-no-padding">
+              <ion-icon name="speedometer"></ion-icon>
+              <ion-label>{{deviceInfoValues.speed}}km/h</ion-label>
+            </ion-item>
+            <ion-item class="ion-no-padding">
+              <ion-icon name="pin"></ion-icon>
+              <a id="googleMapsLink" target="_blank">Google Maps</a>
+              
+            </ion-item>
+            <ion-item class="ion-no-padding">
+              <ion-icon name="clock"></ion-icon>
+              <ion-label>{{deviceInfoValues.time}}</ion-label>
+            </ion-item>
+
+            <ion-item-divider class="ion-no-padding">
+              <ion-label>Nearest Location:</ion-label>
+            </ion-item-divider>
+            <ion-item class="ion-no-padding">
+              <ion-icon name="film"></ion-icon>
+              <ion-label>{{deviceInfoValues.street}}</ion-label>
+            </ion-item>
+            <ion-item class="ion-no-padding">
+              <ion-icon name="business"></ion-icon>
+              <ion-label>{{deviceInfoValues.building}}</ion-label>
+            </ion-item>
+            <ion-item class="ion-no-padding">
+              <ion-icon name="home"></ion-icon>
+              <ion-label>{{deviceInfoValues.city}}</ion-label>
+            </ion-item>
+
+            <ion-item-divider class="ion-no-padding">
+              <ion-label>Stopped Since:</ion-label>
+            </ion-item-divider>
+            <ion-item class="ion-no-padding">
+              <ion-icon name="log-in"></ion-icon>
+              <ion-label>{{deviceInfoValues.lastLogin}}</ion-label>
+            </ion-item>
+            <ion-item class="ion-no-padding">
+              <ion-icon name="stopwatch"></ion-icon>
+              <ion-label>{{deviceInfoValues.days}}</ion-label>
+            </ion-item>
+        </ion-item-group>
+        </ion-list>
+      </mat-expansion-panel>
+        
+      <mat-expansion-panel>
+        <mat-expansion-panel-header [class.slides-color]="colorClassActive[1]" (click)="toggleColor(1)">
+          Route
+        </mat-expansion-panel-header>
+        <ion-segment>
+          <ion-segment-button id=4 (click)="showTab(4)">
+            
+            <ion-label>DateRange</ion-label>
+          </ion-segment-button>
+          <ion-segment-button id=0 (click)="showTab(0)">
+            
+            <ion-label>LastMinutes</ion-label>
+          </ion-segment-button>
+          <ion-segment-button id=1 (click)="showTab(1)">
+            
+            <ion-label>LastPoints</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+
+        <form #f="ngForm" (ngSubmit)="getPoints(f)">
+          <ion-grid *ngIf="selectedTab == 4"> 
+            <ion-row >
+              <ion-col size-md="6" offset-md="3"> 
+                <ion-list  class="ion-no-padding">
+                      
+                  <ion-item class="ion-no-padding">
+                        <ion-icon name="calendar"></ion-icon>
+                        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="startDate" ngModel pickerFormat="MMM DD, YYYY HH:mm"  name="startDate" placeholder="Start Date">
+                        </ion-datetime>
+                  </ion-item>
+                  <ion-item class="ion-no-padding">
+                        <ion-icon name="calendar"></ion-icon>
+                        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="endDate" ngModel pickerFormat="MMM DD, YYYY HH:mm" name="endDate" placeholder="End Date">
+                        </ion-datetime>                                       
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-grid *ngIf="selectedTab == 0"> 
+            <ion-row >
+              <ion-col size-md="6" offset-md="3"> 
+                <ion-list class="ion-no-padding">
+                  <ion-item class="ion-no-padding">
+                    <ion-icon name="time"></ion-icon>
+                    <ion-input placeholder="Last Minutes" [(ngModel)]="lastMinutes" ngModel name="lastMinutes" class="text-alignment">
+                    </ion-input>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+              </ion-row>
+          </ion-grid>
+          <ion-grid *ngIf="selectedTab == 1"> 
+            <ion-row >
+              <ion-col size-md="6" offset-md="3"> 
+                <ion-list class="ion-no-padding">
+                  <ion-item class="ion-no-padding">
+                    <ion-icon name="analytics"></ion-icon>
+                    <ion-input placeholder="Last WayPoints" [(ngModel)]="lastPoints" ngModel name="lastPoints" class="text-alignment">
+                    </ion-input>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-item class="ion-no-padding">
+            <ion-button type="submit" slot="end">
+              <ion-label>Save</ion-label>
+            </ion-button>
+          </ion-item>
+        </form>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header [class.slides-color]="colorClassActive[2]" (click)="toggleColor(2)">
+          Alarms
+        </mat-expansion-panel-header>
+          
+        <div *ngIf="deviceModel; else NoDeviceModel">
+        
+        <ion-list >
+          
+          <ion-item class="ion-no-padding" *ngIf="deviceModel.alarm_sos===1 || deviceModel.alarm_drop==1">
+            <div *ngIf="deviceModel.alarm_sos===1; else drop">
+              <ion-label class="item-paddings">SOS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
+              <ion-img src="../../../assets/icons/map/alarms/paj-icon-alarm-sos.png" class="icon-dimensions item-bottom-padding">
+              </ion-img>
+              <ion-icon name="help-circle-outline" (click)="showAlarmInfo(0)" class="mouseIcon infoIconPosition"></ion-icon>
+            </div>
+            <ng-template #drop>
+              <div>
+                <ion-label class="item-paddings">Remove the FINDER</ion-label>
+                <ion-img src="../../../assets/icons/map/alarms/paj-icon-alarm-drop.png" class="icon-dimensions item-bottom-padding">
+                </ion-img>
+              </div>
+            </ng-template>
+            <ion-toggle slot="end" color="primary" (ionChange)="enableAlarmData($event)" [checked]="deviceAlarmsValues.alarmsos" id="alarmsos">
+            </ion-toggle>
+
+          </ion-item>
+
+          <ion-item class="ion-no-padding" *ngIf="deviceModel.alarm_batteriestand===1">
+            <div>
+              <ion-label class="item-paddings">Low Battery</ion-label>
+              <ion-img src="../../../assets/icons/map/alarms/paj-icon-alarm-battery.png" class="icon-dimensions item-bottom-padding">
+              </ion-img>
+              <ion-icon name="help-circle-outline" (click)="showAlarmInfo(1)" class="mouseIcon infoIconPosition"></ion-icon>
+            </div>  
+            <ion-toggle slot="end" color="primary" (ionChange)="enableAlarmData($event)" [checked]="deviceAlarmsValues.alarmakkuwarnung" id="alarmakkuwarnung">
+            </ion-toggle>                               
+          </ion-item>
+
+          <ion-item class="ion-no-padding" *ngIf="deviceModel.alarm_erschuetterung===1">
+            <div>
+              <ion-label class="item-paddings">Shock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
+              <ion-img src="../../../assets/icons/map/alarms/paj-icon-alarm-shock.png" class="icon-dimensions item-bottom-padding">
+              </ion-img>
+              <ion-icon name="help-circle-outline" (click)="showAlarmInfo(2)" class="mouseIcon infoIconPosition"></ion-icon>
+            </div>
+            <ion-toggle slot="end" color="primary" (ionChange)="enableAlarmData($event)" [checked]="deviceAlarmsValues.alarmbewegung" id="alarmbewegung">
+            </ion-toggle>
+          </ion-item>
+
+          <ion-item class="ion-no-padding" *ngIf="deviceModel.alarm_stromunterbrechung===1">
+            <div>
+              <ion-label class="item-paddings">Power cut-off</ion-label>
+              <ion-img src="../../../assets/icons/map/alarms/paj-icon-alarm-power-cut.png" class="icon-dimensions item-bottom-padding">
+              </ion-img>
+              <ion-icon name="help-circle-outline" (click)="showAlarmInfo(3)" class="mouseIcon infoIconPosition"></ion-icon>
+            </div>
+            <ion-toggle slot="end" color="primary" (ionChange)="enableAlarmData($event)" [checked]="deviceAlarmsValues.alarmstromunterbrechung" id="alarmstromunterbrechung">
+            </ion-toggle>
+          </ion-item>
+
+          <ion-item class="ion-no-padding" *ngIf="deviceModel.alarm_zuendalarm===1">
+            <div>
+              <ion-label class="item-paddings">Ignition alert</ion-label>
+              <ion-img src="../../../assets/icons/map/alarms/paj-icon-alarm-ignition.png" class="icon-dimensions item-bottom-padding">
+              </ion-img>
+              <ion-icon name="help-circle-outline" (click)="showAlarmInfo(4)" class="mouseIcon infoIconPosition"></ion-icon>
+            </div>
+            <ion-toggle slot="end" color="primary" (ionChange)="enableAlarmData($event)" [checked]="deviceAlarmsValues.alarmzuendalarm" id="alarmzuendalarm">
+            </ion-toggle>
+          </ion-item>
+
+          <ion-item class="ion-no-padding" *ngIf="deviceModel.alarm_geschwindigkeit===1">
+            <div>
+              <ion-label class="item-paddings">Speeding alert</ion-label>
+              <ion-img src="../../../assets/icons/map/alarms/paj-icon-alarm-speeding.png" class="icon-dimensions item-bottom-padding">
+              </ion-img>
+              <ion-icon name="help-circle-outline" (click)="showAlarmInfo(5)" class="mouseIcon infoIconPosition"></ion-icon>
+            </div>
+            <div slot="end">
+            <ion-toggle slot="end" color="primary" (ionChange)="enableAlarmData($event)" [checked]="deviceAlarmsValues.alarmgeschwindigkeit" id="alarmgeschwindigkeit">
+            </ion-toggle>
+            <div *ngIf="deviceAlarmsValues.alarmgeschwindigkeit===1" slot="end">
+              <ion-item class="ion-no-padding">
+              <ion-label>km/h</ion-label></ion-item>
+              <ion-item class="ion-no-padding">
+              <ion-input type="number" [(ngModel)]="alarmgeschwindigkeitab" (ionBlur)="updateSpeed(alarmgeschwindigkeitab)" placeholder="Value" class="speed-input-width"></ion-input>
+            </ion-item></div></div>
+          </ion-item>
+
+          <ion-item class="ion-no-padding" *ngIf="deviceModel.alarm_radius===1">
+            <div>
+              <ion-label class="item-paddings">Leave/Enter area</ion-label>
+              <ion-img src="../../../assets/icons/map/alarms/paj-icon-alarm-radius.png" class="icon-dimensions item-bottom-padding">
+              </ion-img>
+              <ion-icon name="help-circle-outline" (click)="showAlarmInfo(6)" class="mouseIcon infoIconPosition"></ion-icon>
+            </div>
+            <ion-toggle slot="end" color="primary" (ionChange)="enableAlarmData($event)" [checked]="deviceAlarmsValues.alarmgeozaunbefahren" id="alarmgeozaunbefahren">
+            </ion-toggle>
+          </ion-item>
+        </ion-list>
+      </div>
+      <ng-template #NoDeviceModel>
+        <ion-label class="item-paddings">No data for Alarms</ion-label>
+      </ng-template>
+      </mat-expansion-panel>
+        
+    </mat-accordion>
+      
+    
+    <ion-item>
+        <ion-button (click)="logout()" slot="end">
+          <ion-icon slot="start" name="power"></ion-icon>
+          <ion-label>Logout</ion-label>
+        </ion-button>
+    </ion-item>
+  </ion-content>
+</ion-menu> -->
+<ion-router-outlet id="first"></ion-router-outlet>

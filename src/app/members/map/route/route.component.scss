@@ -1,0 +1,168 @@
+ion-header{
+    ion-toolbar{
+        --background: var(--lightgrey);
+        text-align: center;
+        ion-title{
+            color: var(--black);
+            text-align: left;
+            // left: 30px;
+            font-size: 14px;
+            position: static !important;
+        }
+        ion-avatar{
+            width: 45px;
+            height: 45px;
+            border-radius: 5px;
+            margin: 0 0 0 10px;
+            img{
+                border-radius: 5px;
+            }
+        }
+        ion-icon{
+            // color: var(--primary);
+            // margin: 0 5px 0;
+            // font-size: 20px;
+
+            color: var(--primary);
+            margin: -5px 5px 0;
+            font-size: 16px;
+            width: 19px;
+            height: 20px;
+            padding: 3px;
+        }
+        ion-button{
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            --padding: 0 5px !important;
+            
+            button{
+                --padding: 0 5px !important;
+            }
+        }
+    }
+}
+
+
+
+ion-content{
+    .top10 {
+        margin-top: 10px;
+    }
+    ion-datetime {
+        font-size: 12px;
+        padding: 0px;
+    }
+    .device-list{
+        padding:3px 10px 10px;
+        .flaticon-move{
+            color: #adadad;
+            font-size:20px;
+        }
+        ion-list{
+            ion-item{
+                --background: var(--lightgrey);
+                border-radius: 5px;
+                margin-bottom: 10px;
+                
+                ion-avatar{
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 10px;
+                    img{
+                        border-radius: 5px;
+                    }   
+                }
+                ion-toggle{
+                    margin: 0;
+                    padding:5px 8px;
+                }
+                .item-inner{
+                    border: 0 !important;
+                } 
+            }
+            
+        }
+    }
+
+    ion-card{
+        border: solid 1px var(--bordercolor);
+        box-shadow: none;
+        ion-card-header{
+            text-align: left;
+            background: var(--lightgrey);
+            padding: 15px;
+            ion-card-title{
+                font-size: 14px;
+                color: var(--black);
+                margin: 0;
+            }
+            i{
+                position: absolute;
+                color: var(--primary);
+                right: 15px;
+                bottom: 15px;
+                font-size: 16px;
+            }
+        }
+        ion-card-content{
+            padding: 0;
+            ion-list{
+                padding: 0;
+                ion-item{
+                    border-bottom: solid 1px var(--bordercolor);
+                    --min-height: 40px;
+                    &:last-child{
+                        border:0;
+                    }
+                    ion-icon{
+                        font-size: 17px;
+                        color: var(--primary);
+                        margin: 1px 3px 0 0;
+                        height: 25px;
+                        width: 25px;
+                    }
+                    ion-label{
+                        font-size: 14px;
+                    }
+                    ion-select{
+                        width: 100%;
+                        display: contents;   
+                    }
+                    .sc-ion-input-md-h{
+                        font-size: 15px;
+                        --padding-top: 0;
+                        --padding-bottom: 0;
+                        color: #686868;
+                    }
+                }
+                .item-field{
+                    --min-height: 43px;
+                }
+                
+            }
+        }
+    }
+}
+
+
+ion-footer{
+    padding:0 10px; 
+    border: 0;
+    ion-toolbar{
+        --background: transparent;
+        
+        ion-button{
+            text-transform: capitalize;
+            font-weight: normal;
+            font-size: 17px;
+            height: 42px;
+            ion-icon{
+                font-size: 16px;
+                margin: 4px 0 0 5px;
+                width: 29px;
+                height: 20px;
+                vertical-align: middle;
+            }
+        }
+    }
+}

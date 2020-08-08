@@ -1,0 +1,71 @@
+<app-side-bar slot="end"></app-side-bar>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/map"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>My Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="content-padding">
+    <form #f="ngForm" novalidate (ngSubmit)="update(f)" [formGroup]="registerForm">
+    <ion-list lines="none">
+
+        <ion-item>
+          <ion-icon slot="start" class="flaticon-avatar"></ion-icon>
+          <ion-label position="stacked"><h3>First Name</h3></ion-label>
+          <ion-input type="text"  formControlName="fname" placeholder="FirstName" [(ngModel)]="fName" name="name" required></ion-input>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.fname">
+              <div class="error-message" *ngIf="registerForm.get('fname').hasError(validation.type) && (registerForm.get('fname').dirty || registerForm.get('fname').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon slot="start" class="flaticon-avatar"></ion-icon>
+          <ion-label position="stacked">
+            <h3>Last Name</h3>
+          </ion-label>
+          <ion-input type="text"  formControlName="lname" placeholder="LastName" [(ngModel)]="lName" name="name" required></ion-input>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.lname">
+              <div class="error-message" *ngIf="registerForm.get('lname').hasError(validation.type) && (registerForm.get('lname').dirty || registerForm.get('lname').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon slot="start" class="flaticon-email"></ion-icon>
+          <ion-label position="stacked">
+            <h3>Email Address</h3>
+          </ion-label>
+          <ion-input type="email" formControlName="email"  placeholder="Email" name="email" [(ngModel)]="email" required></ion-input>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.email">
+              <div class="error-message" *ngIf="registerForm.get('email').hasError(validation.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+        </ion-item>
+    </ion-list>
+    </form>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" size="large" [disabled]="!f.valid" (click)="update(f)">
+      Save <ion-icon class="flaticon-arrow-pointing-to-right"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

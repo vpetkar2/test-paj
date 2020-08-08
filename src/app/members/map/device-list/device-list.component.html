@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="toggleReorderGroup()">
+      <ion-icon class="flaticon-move"></ion-icon> Reorder
+    </ion-buttons>
+    <ion-title>Select Device</ion-title>
+    <ion-buttons slot="end" (click)="dismiss()">
+      <ion-icon class="flaticon-close-button"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [scrollEvents]="true" scrollY="true">
+  <div class="device-list">
+    <ion-radio-group [(ngModel)]="radioCheck" id="deviceRadio">
+      <ion-reorder-group id="reorder" (ionItemReorder)="doReorder($event)" disabled="true">
+        <ion-item *ngFor="let item of data; let i = index" >
+          <ion-avatar>
+            <img alt="Image not Found" *ngIf="!item.iconusecustom" src="./../../../../assets/icons/map/devices/device_markers/{{item.iconname}}.png">
+            <img alt="Image not Found" *ngIf="item.iconusecustom" [src]="(this.url+'/upload/images/users/'+this.userId+'/devices/'+item.id+'/customImg/'+item.iconcustomimage)">
+          </ion-avatar>
+          <ion-reorder slot="start">
+            <ion-icon name="move"></ion-icon>
+          </ion-reorder>
+          <ion-toggle class="toggleButtons" (ionChange)="passToggleValue($event)" id={{item.id}} checked></ion-toggle>
+          <ion-label>{{item.name}}</ion-label>
+          <ion-radio slot="end" class="radioButtons" [checked]="item.id==selectedDeviceId" (click)="enableDeviceData(item.id, item.name, i)" id="r{{item.id}}"></ion-radio>
+        </ion-item>
+        </ion-reorder-group>
+    </ion-radio-group>
+  </div>
+</ion-content>

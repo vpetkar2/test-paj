@@ -1,0 +1,37 @@
+<ion-fab vertical="bottom" horizontal="start" slot="fixed">
+  <ion-fab-button color="dark">
+    <ion-icon name="arrow-dropup"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="top">
+      <!-- <div *ngIf="data">
+          <ion-item *ngFor="let item of data">
+              <ion-toggle color="primary"></ion-toggle>
+              <ion-label>{{item.name}}</ion-label>
+          </ion-item>
+      </div> -->
+      <ion-fab-button color="light" ion-button tooltip="Map" positionH="right" topOffset=4 arrow>
+        <ion-icon name="map"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light" ion-button routerLink="/dashboard" tooltip="Dashboard" positionH="right" arrow>
+        <ion-icon name="stats"></ion-icon>
+      </ion-fab-button>
+    <ion-fab-button color="light" ion-button routerLink="/device-management" tooltip="Device Management" positionH="right" arrow>
+      <ion-icon name="cog"></ion-icon>
+    </ion-fab-button>
+      <ion-fab-button color="light" ion-button tooltip="Alarm Summary" positionH="right" arrow>
+        <ion-icon name="alarm" routerLink="/notifications" routerDirection="forward"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light" ion-button tooltip="My Account" positionH="right" arrow>
+          <ion-icon name="person" routerLink="/account" routerDirection="forward"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button *ngIf="isAdmin == '1'" color="light" ion-button tooltip="Register" positionH="right" arrow>
+          <ion-icon name="person-add" routerLink="/register" routerDirection="forward"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light" ion-button tooltip="Privacy Policy" positionH="right" arrow>
+        <ion-icon name="lock" (click)="openPrivacyPolicy()"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light" ion-button tooltip="Imprint" positionH="right" arrow>
+        <ion-icon name="information-circle-outline" (click)="openImprint()"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+</ion-fab>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "536664288434",
+    "firebase_url": "https://paj-appv2.firebaseio.com",
+    "project_id": "paj-appv2",
+    "storage_bucket": "paj-appv2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536664288434:android:92ae64b0e852177bbd2dab",
+        "android_client_info": {
+          "package_name": "io.ionic.pajgps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "536664288434-tilplsphclujnh1jvsm61e2qulljj0ub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7BI1jRKW5m-m7LCE1ZibvhEX7xS2nOsA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "536664288434-tilplsphclujnh1jvsm61e2qulljj0ub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

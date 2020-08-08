@@ -1,0 +1,103 @@
+ion-header{
+  ion-toolbar{
+      ion-title{
+          top: 11px;
+          .header-logo{
+              width: 60px;
+          }   
+      }
+  }
+}
+
+ion-content{
+    .full-map{
+        width: 100%;
+        height: calc(100vh - 110px);
+        border: 0;
+        padding: 0;
+        margin: 0;
+    } 
+}
+
+ion-footer {
+    .tab-inactive {
+        color: var(--ion-color-primary-contrast) !important;
+    }
+    .tab-active {
+        color: var(--primary) !important;
+    }
+}
+
+.noScroll {
+  --overflow: hidden;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+// .bottom-drawer-precedence {
+//   z-index: 1000;
+// }
+
+// .marker {
+//     // background-image: url('../../../assets/icon/mapbox-icon.png');
+//     // background-image: url('../../../assets/icons/map/tracking_new/track-0.png');
+//     // background-size: cover;
+//     // width: 25px;
+//     // height: 25px;
+//     // background-position: center;
+//     // background-repeat: no-repeat;
+//     // border-radius: 50%;
+//     cursor: pointer;
+//   }
+  
+// .mapboxgl-popup {
+//     max-width: 400px;
+//   }
+  
+//   .mapboxgl-popup-content {
+//     text-align: center;
+//     font-family: 'Open Sans', sans-serif;
+//   }
+
+
+
+//   .listing-group {
+//     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+//     font-weight: 600;
+//     position: absolute;
+//     top: 250px;
+//     right: 6px;
+//     z-index: 1;
+//     border-radius: 3px;
+//     cursor: pointer;
+//   }
+
+//   .md .listing-group {
+//     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+//     font-weight: 600;
+//     position: absolute;
+//     top: 74px;
+//     right: 12px;
+//     z-index: 1;
+//     border-radius: 3px;
+//     cursor: pointer;
+//   }
+
+//   .ios .listing-group {
+//     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+//     font-weight: 600;
+//     position: absolute;
+//     top: 72px;
+//     right: 12px;
+//     z-index: 1;
+//     border-radius: 3px;
+//     cursor: pointer;
+//   }
+
+//   .icon-style{
+//     font-size: 200%;
+//   }
+     
